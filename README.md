@@ -5,8 +5,8 @@ Die Datei `ticket-downloader.js` beinhaltet das eigentliche Download-Script, die
 
 Einfach auf einem Linux-System mit nodejs, puppeteer und chromium-browser ablegen und per Cronjob immer am Ersten des Monats ausführen lassen.
 
-# Wie installiere ich nodejs unter Debian12?
-Auf einem neuen Debian12:
+# Wie installiere ich nodejs unter Debian 12?
+Auf einem neuen Debian 12:
 ```
 apt update && apt upgrade -y
 apt install nodejs npm
@@ -31,7 +31,7 @@ npm install puppeteer
 
 Das Script sollte nun mit dem nodejs Benutzer ausführbar sein.
 
-Falls ihr sudo auf dem neuen Benutzer braucht:
+Falls du sudo auf dem neuen Benutzer brauchst:
 ```
 apt install sudo
 usermod -a -G sudo nodejs
