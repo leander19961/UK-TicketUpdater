@@ -38,7 +38,7 @@ const path = require('path');
   const html = await page3.content();
 
   // save html in file
-  const filePath = path.resolve('PathToFile', 'Filename.html');
+  const filePath = path.resolve('/Path/To/File', 'Filename.html');
   fs.writeFileSync(filePath, html);
 
   await browser.close();
