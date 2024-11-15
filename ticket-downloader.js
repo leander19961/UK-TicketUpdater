@@ -5,7 +5,9 @@ const path = require('path');
 (async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-  await page.goto('https://ticket.astakassel.de');
+  
+  // goto with waitUntil options
+  await page.goto('https://ticket.astakassel.de', { waitUntil: 'networkidle2' });
   
   // enter user credentials
   await page.type('#username', 'Your-UK-Number');
@@ -13,7 +15,10 @@ const path = require('path');
 
   // click on login-button
   await page.waitForSelector('button[type="submit"]');
-  await page.click('button[type="submit"]');
+  await Promise.all([
+    page.click('button[type="submit"]'),
+    page.waitForNavigation({ waitUntil: 'networkidle2' }),
+  ]);
 
   // initialize output variable
   let html = '';
@@ -21,16 +26,16 @@ const path = require('path');
   try {
     // reopen ticket-website
     const page2 = await browser.newPage();
-    await page2.goto('https://ticket.astakassel.de');
-    
+    await page2.goto('https://ticket.astakassel.de', { waitUntil: 'networkidle2' });
+
     // check if puppeteer got redirected to "privacy policy-site"
     const privacyTextExists = await page2.evaluate(() => {
-    return document.body.textContent.includes('Website of the semester ticket');
+      return document.body.textContent.includes('Website of the semester ticket');
     });
 
     // check if puppeteer got redirected to "ticket-site"
     const ticketTextExists = await page2.evaluate(() => {
-    return document.body.textContent.includes('NVV-Semesterticket');
+      return document.body.textContent.includes('NVV-Semesterticket');
     });
     
     if (ticketTextExists) {
@@ -39,11 +44,14 @@ const path = require('path');
     } else if (privacyTextExists) {
       // click on accept on "privacy policy-site"
       await page2.waitForSelector('input[type="submit"][value="Accept"]');
-      await page2.click('input[type="submit"][value="Accept"]');
-      
+      await Promise.all([
+        page2.click('input[type="submit"][value="Accept"]'),
+        page2.waitForNavigation({ waitUntil: 'networkidle2' }),
+      ]);
+
       // reopen ticket-website
       const page3 = await browser.newPage();
-      await page3.goto('https://ticket.astakassel.de');
+      await page3.goto('https://ticket.astakassel.de', { waitUntil: 'networkidle2' });
       
       // download ticket-html
       html = await page3.content();
@@ -64,7 +72,7 @@ const path = require('path');
         </html>
       `;
     }
-    
+
     // save html in file
     const filePath = path.resolve('/Path/To/File', 'Filename.html');
     fs.writeFileSync(filePath, html);
