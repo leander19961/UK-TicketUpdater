@@ -32,6 +32,8 @@ npm install puppeteer
 Das Script sollte nun mit dem nodejs Benutzer ausführbar sein.
 
 ## Wie erstelle ich einen Cronjob?
+(Anmerkung: Jeder Benutzer hat seine eigene crontab-Datei, der Cronjob muss also auf dem nodejs Benutzer erstellt werden!)
+
 Die crontab-Datei öffnen und mit dem Editor deiner Wahl barbeiten:
 ```
 crontab -e
