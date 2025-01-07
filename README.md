@@ -9,6 +9,12 @@ Das Download-Script einfach auf einem Linux-System mit nodejs, puppeteer und chr
 
 Nicht vergessen die Felder `Your-UK-Number`, `Your-UK-Password` (oben im Script), sowie `/Path/To/File` und `Filename.html` (unten im Script) anzupassen!
 
+# Update 01.2025!
+Sollte Puppeteer beim Ausführen des Skripts einen Fehler anzeigen, dass der Browser nicht gestartet werden konnte, kann das unter Debian 12 daran liegen, dass die Bibliothek `libnss3` fehlt, diese lässt sich einfach allerdings einfach nachinstallieren:
+```
+apt-get install libnss3
+```
+
 ## Wie installiere ich nodejs unter Debian 12?
 Auf einem neuen Debian 12:
 ```
