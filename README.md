@@ -20,7 +20,7 @@ Auf einem neuen Debian 12:
 ```
 apt update && apt upgrade -y
 apt install nodejs npm
-apt install chromium
+apt install firefox-esr
 ```
 
 Danach noch einen Benutzer für nodejs anlegen:
