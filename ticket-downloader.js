@@ -3,7 +3,16 @@ const fs = require('fs');
 const path = require('path');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    product: 'firefox', // Wichtig: Setzt den Browser auf Firefox
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--mute-audio'
+    ]
+  });
   const page = await browser.newPage();
   
   // goto with waitUntil options
