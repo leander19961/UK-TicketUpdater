@@ -8,7 +8,9 @@ Das hier gegebene Upload-Script dient lediglich als Beispiel/Anregung, wie ein U
 Das Download-Script einfach auf einem Linux-System mit nodejs, puppeteer und chromium-browser ablegen und per Cronjob immer am Ersten des Monats ausführen lassen.
 
 Nicht vergessen die Felder `Your-UK-Number`, `Your-UK-Password` (oben im Script), sowie `/Path/To/File` und `Filename.html` (unten im Script) anzupassen!
-
+# Update 09.2025!
+Wechsel zu Firefox wegen fehlender Abhängigkeiten unter Debian 13
+Der Prozess sollte davon abgesehen auch unter Debian 13 weiter funktionieren.
 # Update 01.2025!
 Sollte Puppeteer beim Ausführen des Skripts einen Fehler anzeigen, dass der Browser nicht gestartet werden konnte, kann das unter Debian 12 daran liegen, dass die Bibliothek `libnss3` fehlt, diese lässt sich einfach allerdings einfach nachinstallieren:
 ```
